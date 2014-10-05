@@ -12,10 +12,11 @@ class Api::V2::UsersController < Rack::API::Controller
     set_user
     if @user.save
       @user.authenticate(params[:password])
-      headers[:auth_token] = @user.auth_token
-      { user: @user, status: 200 }
+      headers["Set-Cookie"] = "auth_token=#{@user.auth_token}"
+      status 201
+      { user: @user, status: 201 }
     else
-      error errors: @user.errors.full_messages, status: 500
+      error message: @user.errors.full_messages.join(', '), status: 400
     end
   end
 
@@ -24,7 +25,7 @@ class Api::V2::UsersController < Rack::API::Controller
     if @user.update(user_params)
       { user: @user, status: 200 }
     else
-      error errors: @user.errors.full_messages, status: 500
+      error message: @user.errors.full_messages.join(', '), status: 400
     end
   end
 
@@ -33,7 +34,7 @@ class Api::V2::UsersController < Rack::API::Controller
     if @user.delete
       { status: 200 }
     else
-      error messages: 'Unable to destroy this resource', status: 500
+      error message: 'Unable to destroy this resource', status: 500
     end
   end
 

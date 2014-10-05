@@ -24,7 +24,7 @@ describe Rack::API do
 
         before { post "api/v2/users", user: attributes }
 
-        it { expect( last_response.status ).to eql 200 }
+        it { expect( last_response.status ).to eql 201 }
         it { expect( json["user"]["email"] ).to eql attributes[:email] }
         it { expect( User.count ).to eql 1 }
         it { expect( User.where(email: attributes[:email]) ).to exist }
@@ -33,7 +33,7 @@ describe Rack::API do
       describe "with invalid data" do
         before { post "api/v2/users", user: {} }
 
-        it { expect( last_response.status ).to eql 500 }
+        it { expect( last_response.status ).to eql 400 }
         it { expect( User.count ).to eql 0 }
       end
 
@@ -60,7 +60,7 @@ describe Rack::API do
       describe "with invalid data" do
         before { put "api/v2/users/#{user.id}", user: { email: '' } }
 
-        it { expect(last_response.status).to eql 500 }
+        it { expect(last_response.status).to eql 400 }
       end
     end
 

@@ -14,7 +14,7 @@ class Api::V2::PostsController < Rack::API::Controller
       status 201
       { post: @post, status: 201 }
     else
-      error errors: @post.errors.full_messages, status: 400
+      error message: @post.errors.full_messages.join('\n'), status: 400
     end
   end
 
@@ -23,7 +23,7 @@ class Api::V2::PostsController < Rack::API::Controller
     if @post.update(post_params)
       { post: @post, status: 200 }
     else
-      error errors: @post.errors.full_messages, status: 400
+      error message: @post.errors.full_messages.join('\n'), status: 400
     end
   end
 
@@ -32,7 +32,7 @@ class Api::V2::PostsController < Rack::API::Controller
     if @post.delete
       { status: 200 }
     else
-      error errors: ['Unable to destroy this resource'], status: 400
+      error message: 'Unable to destroy this resource', status: 400
     end
   end
 
