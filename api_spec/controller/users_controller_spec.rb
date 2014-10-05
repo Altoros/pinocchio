@@ -6,7 +6,7 @@ describe Rack::API do
   let(:json)    { JSON.parse(last_response.body) }
   let(:attributes) { FactoryGirl.attributes_for(:user) }
 
-  describe Api::V2::UserController do
+  describe Api::V2::UsersController do
     describe "#index" do
       let!(:users)  { create_list :user, 5 }
 

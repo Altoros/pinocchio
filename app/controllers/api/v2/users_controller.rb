@@ -1,4 +1,4 @@
-class Api::V2::UserController < Rack::API::Controller
+class Api::V2::UsersController < Rack::API::Controller
   def index
     { users: User.all }
   end
