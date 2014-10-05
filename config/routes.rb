@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 			resources :posts, format: :json
 		end
   end
+
+  mount Rack::API => "/"
 end
