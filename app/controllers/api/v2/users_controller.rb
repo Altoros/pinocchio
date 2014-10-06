@@ -45,6 +45,6 @@ class Api::V2::UsersController < Rack::API::Controller
     end
 
     def user_params
-      params[:user];
+      params[:user]
     end
 end
