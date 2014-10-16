@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   skip_before_filter :authenticate_user, only: [:show, :index]
-  
+
   before_action :authorize_resource, only: [:edit, :update, :destroy]
 
   prepend_before_action :set_post, except: [:index]
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def update    
+  def update
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body) if params[:post].present?
   end
 
-  def authorize_resource      
+  def authorize_resource
     authorize(@post)
-  end    
+  end
 end

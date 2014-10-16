@@ -80,6 +80,13 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.5.2)
+    rack-api (1.1.0)
+      activesupport (>= 3.0)
+      i18n
+      rack (>= 1.0.0)
+      rack-mount (>= 0.6.0)
+    rack-mount (0.8.3)
+      rack (>= 1.0.0)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.4)
@@ -171,6 +178,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   pry
+  rack-api (~> 1.0)
   rails (= 4.1.4)
   rspec-rails
   sass-rails (~> 4.0.3)

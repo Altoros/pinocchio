@@ -10,6 +10,7 @@ gem 'slim', '~> 2.0.3'
 gem 'sqlite3'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem "rack-api", "~> 1.0", :require => "rack/api"
 
 gem 'kaminari'
 gem 'scoped_search'
